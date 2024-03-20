@@ -10,7 +10,7 @@ function VerifyVisit() {
     
     const handleClick = () => {
         // Define what happens when the button is clicked
-        console.log('Button clicked on LandingPage!');
+        console.log('Button clicked on Landing Page!');
     };
 
       
