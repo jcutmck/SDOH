@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+
+//<Route path="/orderreq/:orderId" exact element={<PrintTemplate />} />
+//<Route path="/404" exact element={<NotFound />} />
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Home">
+      <header className="py-16"></header>
+      <body className="App-body">
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<LandingPage />} />
+        </Routes>
+      </Router>
+      </body>
     </div>
-  );
+    );
 }
 
 export default App;

@@ -1,14 +1,17 @@
 {
   "name": "utsdoh",
-  "version": "0.1.0",
+  "version": "0.1",
   "private": true,
   "dependencies": {
-    "@mui/base": "^5.0.0-beta.38",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.14",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
@@ -40,5 +43,9 @@
     "autoprefixer": "^10.4.18",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/jcutmck/utsdoh.git",
+  "author": "IntoTheMetaverse <jclut49@gmail.com>",
+  "license": "MIT"
 }
