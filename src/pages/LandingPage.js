@@ -16,7 +16,7 @@ function VerifyVisit() {
       
     return (
       <div>
-        <h1>"This is the Landing Page"</h1>
+        <h1>"This is the LandingPage"</h1>
         <p>Please enter information to verify your visit for today</p>
         <div className="py-1">
             <TextField id="visittype" label="First Name" variant="filled" />
