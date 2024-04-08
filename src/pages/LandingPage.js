@@ -13,18 +13,22 @@ function VerifyVisit() {
     
     const handleClick = () => {
         const data = {
-            fName: fName,
-            lName: lName,
+            firstName: fName,
+            lastName: lName,
             dob: dob
         };
 
-        // local pyenv version:  fetch('http://127.0.0.1:5000/api/verify', {
-        
+                // local pyenv version:  fetch('http://127.0.0.1:5000/api/verify', {
+            //LOCAL TEST:  'Content-Type': 'application/json'
+      
         // corepoint version:  fetch('https://cptest-vip.utmck.edu:9443/dev/', {
+            //COREPOINT TEST:  'Content-Type': '*/*'
+    
         fetch('http://127.0.0.1:5000/api/verify', {
             method: 'POST',
             headers: {
-                'Content-Type': '*/*'
+                
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
