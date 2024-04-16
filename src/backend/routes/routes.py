@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app
+import requests
 
 verify_bp = Blueprint('verify', __name__)
 
@@ -7,17 +8,49 @@ verify_bp = Blueprint('verify', __name__)
 def verify():
     data = request.json
     current_app.logger.info(data)
+        
     first_name = data.get('firstName')
     last_name = data.get('lastName')
     dob = data.get('dob')
+
+    # Assuming the mock external system is running on localhost:5001
+    external_system_ip = '127.0.0.1:5001'
     
-    # Process the data as needed
-    # For example, you could return a response with the processed data
-    response_data = {
-        'firstName': first_name,
-        'lastName': last_name,
-        'dob': dob
-    }
+    # Send the data to the mock external system
+    responses = requests.post(f'http://{external_system_ip}/verify', json=data)
+
+
     
-    return jsonify(response_data)
+
+    # Check if the request was successful
+    if responses.status_code == 200:
+        # Assuming the mock external system responds with JSON containing the new fields
+        response_data = responses.json()
+
+    # Process the response data
+        valid = response_data.get('valid')
+        mrn = response_data.get('mrn')
+        fin = response_data.get('fin')
+
+        # Perform verification logic using the new fields
+        verification_result = verify_data(data, valid, mrn, fin)
+        
+        # Return a response based on the verification result
+        if verification_result:
+            return jsonify({'message': 'Data verified successfully', 'redirectTo': '/success'})
+        else:
+            return jsonify({'message': 'Data verification failed'}), 400
+    else:
+        # Handle unsuccessful request to the mock external system
+        return jsonify({'message': 'Error communicating with mock external system'}), 500
+
+
+def verify_data(data, valid, mrn, fin):
+    if valid.lower() == "true":
+        if mrn is not None:
+            if fin is not None:
+                return True
+    return False
+    
+
     
