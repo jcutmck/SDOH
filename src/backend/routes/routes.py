@@ -14,13 +14,17 @@ def verify():
     dob = data.get('dob')
 
     # Assuming the mock external system is running on localhost:5001
-    external_system_ip = '127.0.0.1:5001'
+    #external_system_ip for testing on local machine only
+    #external_system_ip = '127.0.0.1:5001'
+    
+    corepoint= 'https://cptest-vip.utmck.edu:9443/dev/get_ids/'
     
     # Send the data to the mock external system
-    responses = requests.post(f'http://{external_system_ip}/verify', json=data)
+    #responses = requests.post(f'http://{external_system_ip}/verify', json=data)
 
+    # Send the data to Corepoint
+    responses = requests.post({corepoint}, json=data)
 
-    
 
     # Check if the request was successful
     if responses.status_code == 200:
@@ -28,9 +32,9 @@ def verify():
         response_data = responses.json()
 
     # Process the response data
-        valid = response_data.get('valid')
-        mrn = response_data.get('mrn')
-        fin = response_data.get('fin')
+        mrn = response_data.IDS.get('MRN')
+        fin = response_data.IDS.get('FIN')
+        valid = response_data.IDS.get('VALID')
 
         # Perform verification logic using the new fields
         verification_result = verify_data(data, valid, mrn, fin)
