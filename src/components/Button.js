@@ -7,6 +7,8 @@ export const SubmitButton = ({text, onClick}) => {
         variant="contained"
         onClick={onClick}
         style={{ backgroundColor: '#f77f00', color: 'white', top: '24px' }}
-        > {text}</MuiButton>
+        > 
+            {text}
+        </MuiButton>
     );
 }
